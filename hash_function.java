@@ -5,6 +5,9 @@ class Solution {
      * @return an integer
      * overflow 
      * (a + b) % p = (a % p + b % p) % p 
+     * (a - b) % p = (a % p - b % p) % p （2）
+        (a * b) % p = (a % p * b % p) % p （3）
+        a ^ b % p = ((a % p)^b) % p （4）
      */
     public int modMultiply(int ascii, int base, int HASH_SIZE){
         long temp = (long) ascii * base % HASH_SIZE;
