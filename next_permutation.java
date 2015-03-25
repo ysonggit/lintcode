@@ -2,6 +2,11 @@ public class Solution {
     /**
      * @param nums: A list of integers
      * @return: A list of integers that's next permuation
+     * from end of list, search increasing sequence
+     * find the one that terminates the peek of the increasing sequence, call it pivot
+     * search from the pivot to the end, find the last element that is greater than the pivot, call it leastgreater
+     * swap pivot with the leastgreater
+     * reverse from pivot+1 position to the end
      */
     public ArrayList<Integer> nextPermuation(ArrayList<Integer> nums) {
 		if(nums.size()==0) return nums;
