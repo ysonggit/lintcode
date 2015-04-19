@@ -2,6 +2,7 @@ public class Solution {
     /**
      * @param nums: an array of integers
      * @return: an integer
+     * key: maintain both local_max and local_min of products
      */
     public int maxProduct(int[] nums) {
         int n= nums.length;
