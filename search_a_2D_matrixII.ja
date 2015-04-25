@@ -1,0 +1,30 @@
+public class Solution {
+    /**
+     * @param matrix: A list of lists of integers
+     * @param: A number you want to search in the matrix
+     * @return: An integer indicate the occurrence of target in the given matrix
+     */
+    public int searchMatrix(int[][] matrix, int target) {
+        int m = matrix.length;
+        if(m==0) return 0;
+        int n= matrix[0].length;
+        int count = 0;
+        int row = m-1, col = 0;
+        while(row>=0 && col<n){
+            int cur = matrix[row][col];
+            if(cur == target){
+                count++;
+                row--;
+                col++;
+                if(row<0 || col==n) return count;
+            }else if(cur<target){
+                col++;
+            }else{
+                row--;
+            }
+        }
+        return count;
+    }
+}
+
+
