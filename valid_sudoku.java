@@ -3,6 +3,13 @@ class Solution {
       * @param board: the board
         @return: wether the Sudoku is valid
       */
+    boolean duplicate(boolean[] existed, char cur){
+        if(cur == '.') return false;
+        int num = (int) (cur - '1');
+        if(existed[num]) return true;
+        existed[num] = true;
+        return false;
+    }
     public boolean isValidSudoku(char[][] board) {
         int n = board.length;
         if(n==0) return true;
@@ -12,24 +19,14 @@ class Solution {
             Arrays.fill(existed, false);
             for(int j=0; j<n; j++){
                 char cur = board[i][j];
-                if(cur == '.') continue;
-                else {
-                    int num = (int) (cur - '1');
-                    if(existed[num]) return false;
-                    else existed[num] = true;
-                }
+                if(duplicate(existed, cur)) return false;
             }
         }
         for(int j=0; j<n; j++){
             Arrays.fill(existed, false);
             for(int i=0; i<n; i++){
                 char cur = board[i][j];
-                if(cur == '.') continue;
-                else {
-                    int num = (int) (cur - '1');
-                    if(existed[num]) return false;
-                    else existed[num] = true;
-                }
+                if(duplicate(existed, cur)) return false;
             }
         }
         for(int i=0; i<n; i+=3){
@@ -37,12 +34,7 @@ class Solution {
                 Arrays.fill(existed, false);
                 for(int k=0; k<n; k++){
                     char cur = board[i+k/3][j+k%3];
-                    if(cur=='.') continue;  
-                    else {
-                        int num = (int) (cur - '1');
-                        if(existed[num]) return false;
-                        else existed[num] = true;  
-                    }
+                    if(duplicate(existed, cur)) return false;
                 }
             }
         }
