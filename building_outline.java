@@ -2,6 +2,8 @@ public class Solution {
     /**
      * @param buildings: A list of lists of integers
      * @return: Find the outline of those buildings
+     * Reference : Skyline algorithm - A binary tree approach 
+     * http://www.shadabahmed.com/blog/2013/04/24/skyline-algorithm-a-binary-tree-approach/
      */
     class SegTreeNode{
         int start;
