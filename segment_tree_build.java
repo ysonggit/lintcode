@@ -14,6 +14,17 @@ public class Solution {
      *@param start, end: Denote an segment / interval
      *@return: The root of Segment Tree
      */
+     /*
+        Recursive version
+        public SegmentTreeNode build(int start, int end) {
+            if(start>end) return null;
+            SegmentTreeNode n = new SegmentTreeNode(start, end);
+            if(start==end) return n;
+            n.left = build(start, (start+end)/2);
+            n.right = build((start+end)/2+1, end);
+            return n;
+        }
+     */
     public SegmentTreeNode build(int start, int end) {
         // special case
         if(start > end) return null;
