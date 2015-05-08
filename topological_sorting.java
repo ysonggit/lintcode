@@ -10,7 +10,35 @@ public class Solution {
     /**
      * @param graph: A list of Directed graph node
      * @return: Any topological order for the given graph.
+     * DFS and BFS
      */    
+    /*
+        ArrayList<DirectedGraphNode> toporder = new ArrayList<DirectedGraphNode>();
+    public void dfs(ArrayList<DirectedGraphNode> graph, boolean []visited,  boolean []tempmarked, DirectedGraphNode cur){
+        if(tempmarked[cur.label]) return ;
+        if(visited[cur.label]==false){
+            tempmarked[cur.label] = true;
+            // for each node m with an edge from n to m, visit m
+            for(DirectedGraphNode m : cur.neighbors){
+                dfs(graph, visited, tempmarked, m);
+            }
+            tempmarked[cur.label] = false;
+            visited[cur.label]= true;
+            toporder.add(0, cur); // mistake: MUST PREPEND TO LIST!
+        }
+    } 
+     
+    public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
+        int n = graph.size();
+        if(n==0) return toporder;
+        boolean [] visited = new boolean[n]; 
+        boolean [] tempmarked = new boolean[n];
+        for(int i=0; i<n; i++){
+            dfs(graph, visited, tempmarked, graph.get(i));
+        }
+        return toporder;
+    }
+    */
     public ArrayList<DirectedGraphNode> topSort(ArrayList<DirectedGraphNode> graph) {
         ArrayList<DirectedGraphNode> toporder = new ArrayList<DirectedGraphNode>();
         if(graph.size()==0) return toporder;
