@@ -14,22 +14,18 @@ public class Solution {
      * @param A: Given an integer array with no duplicates.
      * @return: The root of max tree.
      */
-    void insertRight(TreeNode node, int cur){
-        if(node.right == null){
-            TreeNode newnode = new TreeNode(cur);
-            node.right = newnode;
-            return ;
+    public TreeNode insert(TreeNode root, int cur){
+        TreeNode node = new TreeNode(cur);
+        if(root==null) {
+            return node;
         }
-        if(node.right.val < cur){
-            // cur will be the new subtree root
-            // mistake: must save a copy of node.right
-            TreeNode rightcopy = node.right;
-            TreeNode subroot = new TreeNode(cur);
-            node.right = subroot;
-            subroot.left = rightcopy;
-            return;
+        if(node.val>root.val){
+            node.left = root;
+            return node;
         }
-        insertRight(node.right, cur);
+        // keep on looking up the subtree of root 
+        root.right = insert(root.right, cur);    
+        return root;
     }
     public TreeNode maxTree(int[] A) {
         int n = A.length;
@@ -38,14 +34,13 @@ public class Solution {
         for(int i=1; i<n; i++){
             int cur = A[i];
             if(cur > root.val){
-                TreeNode newroot = new TreeNode(cur);
-                newroot.left = root;
-                root = newroot;
+                TreeNode node = new TreeNode(cur);
+                node.left = root;
+                root = node;
             }else{
-                insertRight(root, cur);
+                root.right = insert(root.right, cur);
             }
         }
         return root;
     }
 }
-
