@@ -1,9 +1,5 @@
-public class Solution {
-   /**
-     * @param A: An integer array
-     * @return: The number of element in the array that 
-     *          are smaller that the given integer
-     */
+/*public class Solution {
+    // Error-prone many corner cases!
     // search insertion position
     public int binarySearch(int[] A, int target){
         int n = A.length;
@@ -36,6 +32,57 @@ public class Solution {
             }else{
                 res.add(pos);
             }
+        }
+        return res;
+    }
+}*/
+
+public class Solution {
+   /**
+     * @param A: An integer array
+     * @return: The number of element in the array that 
+     *          are smaller that the given integer
+     * Using segment tree I prefer this solution
+     */
+    class SegmentTreeNode{
+        int start, end, count;
+        SegmentTreeNode left, right;
+        SegmentTreeNode(int start, int end){
+            this.start = start;
+            this.end = end;
+            left = right = null;
+        }
+    }
+    
+    public SegmentTreeNode build(int low, int high){
+        if(low>high) return null;
+        SegmentTreeNode root = new SegmentTreeNode(low, high);
+        if(low==high) return root;
+        int mid = (low+high)/2;
+        root.left = build(low, mid);
+        root.right = build(mid+1, high);
+        return root;
+    }
+    // return the count of numbers smaller than the target in array A
+    public int query(int [] A, SegmentTreeNode root, int target){
+        if(root==null) return 0;
+        if(target<=A[root.start]) return root.start;
+        if(target>A[root.end]) {
+          return root.end;
+        }
+        int mid = (root.start + root.end)/2;
+        if(target <= A[mid]) return query(A, root.left, target);
+        return query(A, root.right, target);
+    }
+    
+    public ArrayList<Integer> countOfSmallerNumber(int[] A, int[] queries) {
+        ArrayList<Integer> res = new ArrayList<Integer>();
+        int n = A.length;
+        if(queries.length==0) return res;
+        Arrays.sort(A);
+        SegmentTreeNode treeroot = build(0, n-1);
+        for(int i: queries){
+            res.add(query(A, treeroot, i));
         }
         return res;
     }
