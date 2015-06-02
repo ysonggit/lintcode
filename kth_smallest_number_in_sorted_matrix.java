@@ -12,6 +12,8 @@ public class Solution {
      * base case: if k==1 return (sub)matrix[startrow][startcol]
      * if k< min(m, n), return min(matrix[0][k], matrix[k][0])
      *      Memory Limit Exceed for last test case
+     * BUT, if you coding in cpp, with this idea, you can pass the online judge.
+     * Since the cpp version has a reference parameter
      */
     public int kthSmallest(int[][] matrix, int k) {
        int rows = matrix.length, cols = matrix[0].length;
