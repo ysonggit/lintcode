@@ -2,7 +2,7 @@
 
 ## TODO:
 ###Memory Limit Exceed:
-- kth smallest number in sorted matrix  (Can pass online judge using cpp version)
+- kth smallest number in sorted matrix  (Pass online judge using cpp but java)
 
 ###Time Limit Exceed:
 - Longest Increasing Continuous Subsequence II
