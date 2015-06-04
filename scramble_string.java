@@ -20,20 +20,16 @@ public class Solution {
         Arrays.sort(s2chars);
         if(!Arrays.equals(s1chars, s2chars)) return false;
         boolean scramble = false;
-        for(int len=1; len<=n && !scramble; len++){ // important: terminate loop if found scramble
+        for(int len=1; len<=n; len++){ // important: terminate loop if found scramble
             String s11=s1.substring(0, len);
             String s12=s1.substring(len,n);
             String s21=s2.substring(0, len);
             String s22=s2.substring(len, n);
-            scramble = isScramble(s11, s21) && isScramble(s12, s22);
-            if(scramble){
-                return true;
-            }else{
-                String s21_ = s2.substring(n-len, n);
-                String s22_ = s2.substring(0, n-len);
-                scramble = isScramble(s11, s21_) && isScramble(s12, s22_);
-            }
+            if(isScramble(s11, s21) && isScramble(s12, s22)) return true;
+            String s21_ = s2.substring(n-len, n);
+            String s22_ = s2.substring(0, n-len);
+            if(isScramble(s11, s21_) && isScramble(s12, s22_) ) return true;
         }
-        return scramble;
+        return false;
     }
 }
